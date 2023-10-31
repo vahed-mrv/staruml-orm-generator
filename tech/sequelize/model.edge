@@ -1,0 +1,46 @@
+'use strict';
+const { Model } = require('sequelize');
+
+module.exports = (sequelize, DataTypes) => {
+  class {{entity.name}} extends Model {
+    static associate(models) {
+
+    @each(relation in entity.relations)
+      @if(relation.getTypeFromEntityId(entity._id) === RelationType.ONE_TO_ONE_1)~
+      models.{{entity.name}}.hasOne(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @elseif(relation.getTypeFromEntityId(entity._id) === RelationType.ONE_TO_ONE_2)~
+      models.{{entity.name}}.belongsTo(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @elseif(relation.getTypeFromEntityId(entity._id) === RelationType.ONE_TO_MANY)~
+      models.{{entity.name}}.hasMany(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @elseif(relation.getTypeFromEntityId(entity._id) === RelationType.MANY_TO_ONE)~
+      models.{{entity.name}}.belongsTo(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @elseif(relation.getTypeFromEntityId(entity._id) === RelationType.MANY_TO_MANY_1)~
+      models.{{entity.name}}.belongsToMany(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @elseif(relation.getTypeFromEntityId(entity._id) === RelationType.MANY_TO_MANY_2)~
+      models.{{entity.name}}.belongsToMany(models.{{relation.getOtherEndFromEntityId(entity._id).name}});
+      @end
+    @end
+
+    }
+  }
+{{entity.name}}.init({
+
+  @each(col in entity.columns)
+    {{col.name}}: {
+      type: DataTypes.{{col.type}},
+      @if(col.isNullable === false)
+      allowNull: false,
+      @end
+      @if(col.isPrimaryKey === true)
+      autoIncrement: true,
+      primaryKey: true,
+      @end
+    }
+  @end
+
+  }, {
+    sequelize,
+    modelName: '{{entity.name}}',
+  });
+  return {{entity.name}};
+});

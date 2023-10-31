@@ -1,0 +1,39 @@
+{
+  "menu": [
+    {
+      "id": "tools",
+      "submenu": [
+        {
+          "label": "ORM Generator",
+          "id": "tool.ormgenerator",
+          "submenu": [
+            {
+              "label": "Convert ERD To ORM",
+              "id": "tool.ormgenerator.erd-to-orm",
+              "submenu": [
+                {
+                  "label": "TypeORM",
+                  "id": "tool.ormgenerator.erd-to-typeorm",
+                  "command": "ormgenerator:erd-to-typeorm"
+                },
+                {
+                  "label": "Sequelize",
+                  "id": "tool.ormgenerator.erd-to-sequelize",
+                  "command": "ormgenerator:erd-to-sequelize"
+                }
+              ]
+            },
+            {
+              "type": "separator"
+            },
+            {
+              "label": "About",
+              "id": "tool.ormgenerator.show-about",
+              "command": "ormgenerator:show-about"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

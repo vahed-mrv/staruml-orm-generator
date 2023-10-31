@@ -1,0 +1,25 @@
+{
+  "name": "staruml-orm-generator",
+  "title": "StarUML ORM Generator Extension",
+  "description": "An extension for staruml that can generate ORM models and migrations for popular ORMs.",
+  "homepage": "https://github.com/vahed-mrv/staruml-orm-generator",
+  "version": "0.1.0",
+  "keywords": [
+    "staruml",
+    "orm",
+    "sequelize",
+    "typeorm"
+  ],
+  "author": {
+    "name": "M.R.Vahed",
+    "email": "vahed.mrv@gmail.com",
+    "url": "https://github.com/vahed-mrv"
+  },
+  "license": "MIT",
+  "engines": {
+    "staruml": ">=3.0.0"
+  },
+  "dependencies": {
+    "edge.js": "^5.5.1"
+  }
+}

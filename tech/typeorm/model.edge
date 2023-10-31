@@ -1,0 +1,26 @@
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+
+@Entity()
+export class {{entity.name}} {
+
+  @each(col in entity.columns)~
+    @if(col.isPrimaryKey)
+    @PrimaryGeneratedColumn()
+    @else
+    @Column(
+@if(col.isNullable || col.length > 0)~
+{
+      @if(col.isNullable)
+      nullable: true,
+      @end
+      @if(col.length > 0)
+      length: {{col.length}},
+      @end
+    }
+@end~
+)
+    @end
+    {{col.name}}: {{col.type}}
+
+  @end
+}
