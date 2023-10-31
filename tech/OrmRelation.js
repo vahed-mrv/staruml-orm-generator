@@ -5,7 +5,7 @@ module.exports = class OrmRelation {
     end1;
     end2;
 
-    constructor(erdRelationship, ormEntity1, ormEntity2) {
+    constructor(erdRelationship) {
         this.erdRelationship = erdRelationship;
     }
 
